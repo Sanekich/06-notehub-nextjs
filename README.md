@@ -1,28 +1,21 @@
-# NoteHub — Vite
+# NoteHub — homework 06
 
-Vite-powered React application for managing personal notes.
+Next.js App Router version of NoteHub.
 
 ## Setup
 
-1. Run `npm install`.
-2. Copy `.env.example` to `.env.local`.
-3. Set `VITE_NOTEHUB_TOKEN` to your NoteHub API token.
-4. Run `npm run dev`.
-
-## Routes
-
-- `/` — application introduction
-- `/notes` — searchable, paginated notes with note creation
-- `/notes/[id]` — details for one note
-
-The app uses React Router for client-side navigation and TanStack Query for API data.
-Note that Vite environment variables prefixed with `VITE_` are included in the client bundle.
-
-## Build
-
 ```bash
-npm run build
-npm run preview
+npm install
+cp .env.example .env.local
+npm run dev
 ```
 
-Configure `VITE_NOTEHUB_TOKEN` in your deployment environment before building the app.
+Set `NEXT_PUBLIC_NOTEHUB_TOKEN` in `.env.local` before loading the notes page.
+
+Routes:
+
+- `/` — home page
+- `/notes` — searchable notes list
+- `/notes/[id]` — note details
+
+The notes routes use server-side TanStack Query prefetching with hydration and client components for interactive logic.
