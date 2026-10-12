@@ -1,19 +1,22 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNoteById } from "@/lib/api";
 import css from "./NoteDetails.module.css";
 
 export default function NoteDetailsClient() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const {
     data: note,
     isLoading,
     isError,
   } = useQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
+    queryFn: () => {
+      if (!id) throw new Error("Note ID is required");
+      return fetchNoteById(id);
+    },
     enabled: Boolean(id),
     refetchOnMount: false,
   });

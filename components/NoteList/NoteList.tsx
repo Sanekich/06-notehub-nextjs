@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteNote } from "@/lib/api";
 import type { Note } from "@/types/note";
@@ -20,7 +20,7 @@ export default function NoteList({ notes }: { notes: Note[] }) {
           <p className={css.content}>{note.content}</p>
           <div className={css.footer}>
             <span className={css.tag}>{note.tag}</span>
-            <Link className={css.link} href={`/notes/${note.id}`}>
+            <Link className={css.link} to={`/notes/${note.id}`}>
               View details
             </Link>
             <button className={css.button} onClick={() => mutate(note.id)} disabled={isPending}>
